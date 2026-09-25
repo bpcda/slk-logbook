@@ -19,7 +19,7 @@ export function Layout({ children, odometer }: { children: ReactNode; odometer?:
       <button className="menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen}>Menu</button>
       <NavLink to="/" className="brand">SLK Logbook</NavLink>
       <span className="odometer">{odometer?.toLocaleString('it-IT') ?? '—'} km</span>
-      <button type="button" className="secondary" onClick={() => void signOut()}>Logout</button>
+      <button type="button" className="secondary" onClick={() => void signOut()}>Esci</button>
     </header>
     <aside className={menuOpen ? 'sidebar open' : 'sidebar'}>
       <nav onClick={() => setMenuOpen(false)}>
@@ -33,7 +33,7 @@ export function Layout({ children, odometer }: { children: ReactNode; odometer?:
     {quickOpen && <div className="modal-backdrop" role="presentation" onMouseDown={() => setQuickOpen(false)}>
       <section className="modal" role="dialog" aria-modal="true" aria-labelledby="quick-title" onMouseDown={(event) => event.stopPropagation()}>
         <h2 id="quick-title">Registra</h2>
-        {entities.slice(0, 3).map((entity) => <button key={entity.path} type="button" onClick={() => quickAdd(entity.path)}>{entity.title}</button>)}
+        {entities.slice(0, 3).map((entity) => <button key={entity.path} type="button" onClick={() => quickAdd(entity.path)}>{entity.path === 'trips' ? 'Inizia viaggio' : entity.title}</button>)}
         <button type="button" onClick={() => quickAdd('issues')}>Problema</button>
         <button type="button" className="secondary" onClick={() => setQuickOpen(false)}>Annulla</button>
       </section>

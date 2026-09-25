@@ -42,15 +42,11 @@ export async function saveRow(config: EntityConfig, values: Row, user: User, veh
   const { error } = await query
   if (error) throw error
 
-  const candidates = [config.odometerKey && payload[config.odometerKey], config.path === 'trips' && payload.odometer_end_km]
-  const odometer = Math.max(0, ...candidates.map(Number).filter(Number.isFinite))
-  if (odometer > Number(vehicle.current_odometer_km ?? 0)) {
-    await supabase.from('vehicles').update({ current_odometer_km: odometer }).eq('id', vehicle.id)
-  }
+  const candidates = [config.path !== 'reminders' && config.odometerKey && payload[config.odometerKey], config.path === 'trips' && payload.odometer_end_km]
+  return Math.max(0, ...candidates.map(Number).filter(Number.isFinite))
 }
 
 export async function deleteRow(config: EntityConfig, id: string) {
   const { error } = await supabase.from(config.table).delete().eq('id', id)
   if (error) throw error
 }
-
