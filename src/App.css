@@ -1,0 +1,69 @@
+.app-shell { min-height: 100vh; display: grid; grid-template-columns: 210px 1fr; grid-template-rows: 58px 1fr; }
+.topbar { grid-column: 1 / -1; display: flex; align-items: center; gap: 1rem; padding: .5rem 1rem; color: white; background: #20262c; }
+.brand { color: white; font-size: 1.15rem; font-weight: 700; text-decoration: none; }
+.odometer { margin-left: auto; font-variant-numeric: tabular-nums; }
+.menu-button { display: none; }
+.sidebar { grid-row: 2; padding: 1rem .75rem; background: #e6e9eb; border-right: 1px solid #c8cdd1; }
+.sidebar nav { display: grid; gap: .25rem; }
+.sidebar a { padding: .65rem .75rem; color: #202428; text-decoration: none; border-radius: 3px; }
+.sidebar a.active { color: white; background: #235a88; }
+main { min-width: 0; padding: 1.5rem; }
+.page-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+.page-heading p { margin: .25rem 0 0; color: #646b70; }
+.filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .75rem; margin-bottom: 1rem; padding: 1rem; background: white; border: 1px solid #d4d8db; }
+.records { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; background: white; }
+th, td { padding: .7rem; text-align: left; border-bottom: 1px solid #d9dde0; }
+th { background: #e9ecee; white-space: nowrap; }
+.record-cards { display: none; }
+.record-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 900px; padding: 1rem; background: white; border: 1px solid #d4d8db; }
+.record-form .checkbox, .record-form label:has(textarea), .record-form .form-actions, .record-form .warning, .record-form [role="status"] { grid-column: 1 / -1; }
+.checkbox { display: flex; align-items: center; gap: .5rem; }
+.checkbox input { width: 22px; min-height: 22px; }
+.form-actions { display: flex; gap: .75rem; margin-top: 1rem; }
+.detail-list { max-width: 850px; margin: 0; padding: 1rem; background: white; border: 1px solid #d4d8db; }
+.detail-list > div:not(.form-actions) { display: grid; grid-template-columns: minmax(140px, 1fr) 2fr; gap: 1rem; padding: .6rem 0; border-bottom: 1px solid #e2e5e7; }
+.detail-list dt { font-weight: 700; }
+.detail-list dd { margin: 0; white-space: pre-wrap; }
+.metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.metric { padding: 1rem; background: white; border: 1px solid #d4d8db; }
+.metric span { display: block; color: #5f676c; }
+.metric strong { display: block; margin-top: .25rem; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.dashboard-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+.panel { padding: 1rem; background: white; border: 1px solid #d4d8db; }
+.empty { padding: 1rem; color: #697177; background: white; border: 1px solid #d4d8db; }
+.error, .warning { padding: .75rem; border-left: 4px solid #a32626; background: #fff0f0; }
+.warning { border-color: #b06d00; background: #fff7dd; }
+.quick-button { position: fixed; right: 1rem; bottom: 1rem; box-shadow: 0 3px 10px #0004; }
+.modal-backdrop { position: fixed; inset: 0; display: grid; place-items: center; padding: 1rem; background: #0008; }
+.modal, dialog { width: min(420px, 100%); padding: 1.25rem; border: 1px solid #777; background: white; }
+.modal { display: grid; gap: .65rem; }
+dialog::backdrop { background: #0008; }
+.login-page, .centered { min-height: 100vh; display: grid; place-items: center; padding: 1rem; }
+.login-card { width: min(380px, 100%); display: grid; gap: 1rem; padding: 1.5rem; background: white; border: 1px solid #c7ccd0; }
+
+@media (max-width: 720px) {
+  .app-shell { display: block; }
+  .topbar { position: sticky; top: 0; z-index: 2; }
+  .menu-button { display: inline-flex; }
+  .brand { font-size: 1rem; }
+  .odometer { font-size: .85rem; }
+  .sidebar { display: none; position: fixed; z-index: 3; inset: 58px 0 auto 0; border-bottom: 1px solid #999; }
+  .sidebar.open { display: block; }
+  main { padding: 1rem; }
+  .filters, .record-form, .dashboard-columns { grid-template-columns: 1fr; }
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  table { display: none; }
+  .record-cards { display: grid; gap: .75rem; }
+  .record-cards article { padding: .9rem; background: white; border: 1px solid #d4d8db; }
+  .record-cards p { margin: 0 0 .4rem; }
+  .record-cards strong { display: block; }
+  .detail-list > div:not(.form-actions) { grid-template-columns: 1fr; gap: .2rem; }
+}
+
+@media (max-width: 430px) {
+  .topbar { gap: .5rem; padding-inline: .6rem; }
+  .topbar .secondary { padding-inline: .55rem; }
+  .metric-grid { grid-template-columns: 1fr; }
+  .page-heading { align-items: flex-start; }
+}
